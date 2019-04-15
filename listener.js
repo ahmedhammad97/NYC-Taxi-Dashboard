@@ -1,4 +1,5 @@
 /* VARIABLES */
+var totalTrips = 0;
 var tripsPerDay = {};
 var avgVehiclePerDay = {};
 var dropWithoutLocation = { "yellow" : 0, "green" : 0, "fhv": 0 };
@@ -16,6 +17,7 @@ $(() => { // when document is loaded and ready
 });
 
 function handleIncommingData(record){
+  totalTrips++;
   cleanData(record);
   updateTripsPerDay(record)
   updateAvgVehicles(record)
