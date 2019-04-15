@@ -6,33 +6,49 @@
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
-    <h1>NYC Taxi Dashboard</h1>
-    <table id="tripPerDay">
-      <tr><th>Number of trips per day</th></tr>
-      <tr>
-        <th>Date</th>
-        <th>Number</th>
-      </tr>
-    </table>
-    <br />
-    <table id="avgVehiclePerDay">
-      <tr><th>Average vehicles per day</th></tr>
-      <tr>
-        <th>Date</th>
-        <th>Number</th>
-      </tr>
-    </table>
-    <br />
-    <table id="dropoffLocation">
-      <tr><th>Number of trips without drop off location </th></tr>
-      <tr>
-        <th>Yellow</th>
-        <th>Green</th>
-        <th>FHV</th>
-      </tr>
-    </table>
-    <br />
-
+    <center>
+      <h1>NYC Taxi Dashboard</h1>
+      <p>Refreshing every 2 seconds...</p>
+      <table id="tripPerDay">
+        <tr><th colspan="2">Number of trips per day</th></tr>
+        <tr>
+          <th>Date</th>
+          <th>Number</th>
+        </tr>
+      </table>
+      <table id="avgVehiclePerDay">
+        <tr><th colspan="2">Average vehicles per day</th></tr>
+        <tr>
+          <th>Date</th>
+          <th>Number</th>
+        </tr>
+      </table>
+      <table id="dropoffLocation">
+        <tr><th colspan="3">Number of trips without drop off location</th></tr>
+        <tr>
+          <th>Yellow</th>
+          <th>Green</th>
+          <th>FHV</th>
+        </tr>
+      </table>
+      <table id="minuetsPerTrip">
+        <tr><th colspan="3">Number of minuets per type</th></tr>
+        <tr>
+          <th>Yellow</th>
+          <th>Green</th>
+          <th>FHV</th>
+        </tr>
+      </table>
+      <table id="madisonTrips">
+        <tr><th colspan="4">Number of trips from Madison</th></tr>
+        <tr>
+          <th>Date</th>
+          <th>Yellow</th>
+          <th>Green</th>
+          <th>FHV</th>
+        </tr>
+      </table>
+    </center>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <script src="listener.js"></script>

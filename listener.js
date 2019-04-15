@@ -10,10 +10,11 @@ var madisonTrips = [];
 
 $(() => { // when document is loaded and ready
   const ws = new WebSocket('ws://localhost:9000/ws');
-  ws.onmessage = function(event) {
+  ws.addEventListener('open', (event) => {startUpdatingView()});
+  ws.addEventListener('message', (event) => {
     var record = JSON.parse(event.data);
     handleIncommingData(record)
-  };
+  });
 });
 
 function handleIncommingData(record){
@@ -46,11 +47,11 @@ function updateTripsPerDay(record){
 
 function updateAvgVehicles(record){
   // check if new vehicle
-  if (tripsPerDay[record["vendorId"]] === undefined){
+  if (avgVehiclePerDay[record["vendorId"]] === undefined){
     // insert it
-    tripsPerDay[record["vendorId"]] = 1;
+    avgVehiclePerDay[record["vendorId"]] = 1;
   }
-  else{tripsPerDay[record["vendorId"]]++;}
+  else{avgVehiclePerDay[record["vendorId"]]++;}
 }
 
 function updateDropWithoutLocation(record){
@@ -77,6 +78,7 @@ function updateMadisonTrips(record){
       madisonTrips[pickupDate] = {"yellow":0, "green":0, "fhv":0}
     }
     madisonTrips[pickupDate][record["tripType"]]++;
+  }
 }
 
 // HELPER FUNCTIONS
