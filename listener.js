@@ -4,7 +4,7 @@ var tripsPerDay = {};
 var avgVehiclePerDay = {};
 var dropWithoutLocation = { "yellow" : 0, "green" : 0, "fhv": 0 };
 var minuetsPerTrip = { "yellow" : 0, "green" : 0, "fhv": 0 };
-var madisonTrips = [];
+var madisonTrips = {};
 
 
 
@@ -20,11 +20,11 @@ $(() => { // when document is loaded and ready
 function handleIncommingData(record){
   totalTrips++;
   cleanData(record);
-  updateTripsPerDay(record)
-  updateAvgVehicles(record)
-  updateDropWithoutLocation(record)
-  updateMinuets(record)
-  updateMadisonTrips(record)
+  updateTripsPerDay(record);
+  updateAvgVehicles(record);
+  updateDropWithoutLocation(record);
+  updateMinuets(record);
+  updateMadisonTrips(record);
 }
 
 function cleanData(record){
@@ -32,6 +32,9 @@ function cleanData(record){
     // remove leading and trailing comma's and quote marks
     record[item] = record[item].replace(/[“”"]/g, '').replace(/[‘’']/g,'');
   }
+  // fix wrong convention
+  if (record.taxiType === undefined){record.taxiType = record.tripType}
+  else if (record.tripType === undefined){record.tripType = record.taxiType}
 }
 
 function updateTripsPerDay(record){
@@ -46,12 +49,17 @@ function updateTripsPerDay(record){
 }
 
 function updateAvgVehicles(record){
-  // check if new vehicle
-  if (avgVehiclePerDay[record["vendorId"]] === undefined){
+  let pickupDate = extractDate(record["pickupDateTime"]);
+  // check if new date
+  if (avgVehiclePerDay[pickupDate] === undefined){
     // insert it
-    avgVehiclePerDay[record["vendorId"]] = 1;
+    avgVehiclePerDay[pickupDate] = [];
   }
-  else{avgVehiclePerDay[record["vendorId"]]++;}
+  // insert vendor if not there
+  for (let i=0; i<avgVehiclePerDay[pickupDate].length; i++){
+    if (avgVehiclePerDay[pickupDate][i] === record["vendorId"]){return;}
+  }
+  (avgVehiclePerDay[pickupDate]).push(record["vendorId"]);
 }
 
 function updateDropWithoutLocation(record){
@@ -70,7 +78,7 @@ function updateMinuets(record){
 }
 
 function updateMadisonTrips(record){
-  if (record["pickupLocationId"] === 149){
+  if (record["pickupLocationId"] === "149"){
     let pickupDate = extractDate(record["pickupDateTime"]);
     // check if new date
     if (madisonTrips[pickupDate] === undefined){
