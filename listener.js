@@ -10,7 +10,10 @@ var madisonTrips = {};
 
 $(() => { // when document is loaded and ready
   const ws = new WebSocket('ws://localhost:9000/ws');
-  ws.addEventListener('open', (event) => {startUpdatingView()});
+  ws.addEventListener('open', (event) => {
+    startUpdatingView();
+    startDownloadingFile();
+  });
   ws.addEventListener('message', (event) => {
     var record = JSON.parse(event.data);
     handleIncommingData(record)

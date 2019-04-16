@@ -22,3 +22,6 @@ th{
 tr:first-of-type th{
   background-color: #fb9403;
 }
+#downloadLink{
+  display: none;
+}
