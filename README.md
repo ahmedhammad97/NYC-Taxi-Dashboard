@@ -21,10 +21,10 @@ Every constant period of time (defined for now as 5 minuets), a file is generate
 
 Note: the used browser must allow the page to do the download action (can be configured from the page settings).
 
-#### Technologies
+### Technologies
 The web app is only built using the basic web building blocks, with no additional libraries or frameworks. 
 
-#### How to run
+### How to run
 The server sending the records can be first downloaded from [here.](https://drive.google.com/file/d/1Nr3BV1miyOqxyarkTe5f0i4vy3EGlsrL/view)
 
 After running the server, a simple HTTP server must be used to host the app, probably the simplest way is by using Python command: `python -m SimpleHTTPServer 19001`, where 19001 is the port number.
@@ -33,10 +33,10 @@ Note: the server only allows connections to ports 9000 (which is reserved for it
 
 Then head from your browser to `http://localhost:19001`, the web app should be available there and running.
 
-#### Screenshots
+### Screenshots
 ![Screenshot1](https://github.com/ahmedhammad97/NYC-Taxi-Dashboard/blob/master/screenshots/early.gif)
 
 ![Screenshot2](https://github.com/ahmedhammad97/NYC-Taxi-Dashboard/blob/master/screenshots/late.gif)
 
-#### Resources
+### Resources
 The server and datasets was provided by [Smartera3s](https://smartera3s.com).
